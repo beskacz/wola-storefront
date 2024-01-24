@@ -1,0 +1,54 @@
+.productGrid {
+  // padding-right: 270px;
+
+  .content {
+    max-width: 1380px;
+    padding: 40px;
+    margin: 0 auto;
+  }
+
+  .titleSpacer {
+    // padding-top: 200px;
+    .title {
+      transform: rotate(-90deg);
+      transform-origin: left top;
+      font-size: 12px;
+      line-height: 24px;
+      letter-spacing: 0.1em;
+      font-family: "Poppins", sans-serif;
+      text-transform: uppercase;
+      position: relative;
+      display: inline-block;
+      &::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 0;
+        border-top: 1px solid black;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-right: -10px;
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  .summary {
+    margin-bottom: 100px;
+    p {
+      font-size: 15px;
+      line-height: 1.4em;
+      color: #83817b;
+    }
+    span {
+      color: black;
+      font-size: 47px;
+      line-height: 1.14em;
+      display: block;
+      margin-bottom: 15px;
+      font-family: "Old Standard TT", serif;
+    }
+  }
+}
+

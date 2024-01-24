@@ -1,0 +1,18 @@
+.heroSwiper {
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+  overflow: hidden; 
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4.2vw;
+  }
+  
+  .container {
+    max-width: 1440px;
+    padding: 0 40px;
+    // overflow: auto;
+  }
+}

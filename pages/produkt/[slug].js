@@ -3,11 +3,6 @@ import Header from "@components/Header/Header";
 import Footer from "@components/Footer";
 import { useCart } from "contexts/CartContext";
 import BackOffice from "services/BackOffice";
-import cardImg from "./card.jpg";
-import couple1 from "./couple1.jpg";
-import { HomeCard } from "@components/HomeCard/HomeCard";
-import { HeroSwiper } from "@components/HeroSwiper/HeroSwiper";
-import HomeHero from "@components/HomeHero";
 import Layout from "@components/Layout/Layout";
 import ProductGrid from "@components/ProductGrid/ProductGrid";
 
@@ -51,11 +46,7 @@ const cards = [
 
 export default function Home(props) {
   const { totalItems, total, addItem } = useCart();
-  const onAdd = (prod) => {
-    addItem(prod.id, prod);
-  };
-  console.log(cardImg);
-  console.log({ props });
+ 
   return (
     <div className="container">
       <Head>
@@ -64,33 +55,14 @@ export default function Home(props) {
       </Head>
       {/* <Header /> */}
       <main>
-        <Layout><HomeHero></HomeHero>
-       <ProductGrid products={cards} description={(
-        <><span>Od eterycznej elegancji ponadczasowych klasyków</span> po
-        czarujący urok współczesnych wzorów, nasza gama zaproszeń ślubnych
-        jest celebracją miłości w każdej formie. Każde zaproszenie jest
-        starannie wykonane z najwyższą dbałością o detale,
-        odzwierciedlając piękno i radość otaczającą Twoją podróż ku
-        wiecznemu szczęściu.</>
-       )}></ProductGrid>
-       <ProductGrid products={cards} title="Akcesoria ślubne" description={(
-        <><span>Czy organizujesz ślub w stylu średniowiecznym czy mityczny bankiet?</span>Nasza sekcja akcesoriów ślubnych to nie tylko praktyczne elementy aranżacji, ale również piękne akcenty, które dodadzą magii i wyrafinowanego stylu do Twojego przyjęcia. Każdy element jest starannie zaprojektowany, aby harmonizować z Twoim wybranym motywem, podkreślając charakter Twojego wesela i dodając mu niepowtarzalnego uroku.
-
-        </>
-       )}></ProductGrid>
+        <Layout>
+          <h1>{props.productSlug}</h1>
         <p className="description">
           totalItems: {totalItems}
           total price: {total}
           Get started by editing <code>pages/index.js</code>
         </p>
-        {props.products.map((product) => {
-          return <div>
-            <p>{product.name}</p>
-            <p>{product.price}</p>
-            <p dangerouslySetInnerHTML={{__html: product.price_html}}></p>
-            <button onClick={() => onAdd(product)}>Add to cart</button>
-          </div>
-          })}
+       
         </Layout>
         
         {/* <HeroSwiper>
@@ -132,7 +104,21 @@ export async function getStaticProps({ params }) {
     props: {
       products,
       categories,
+      productSlug: params.slug
     },
     revalidate: 60,
   };
 }
+
+export async function getStaticPaths() {
+  // const res = await fetch('https://.../posts')
+  // const posts = await res.json()
+ 
+  // Get the paths we want to pre-render based on posts
+  const paths = ['/produkt/Palermo'];
+  // We'll pre-render only these paths at build time.
+  // { fallback: 'blocking' } will server-render pages
+  // on-demand if the path doesn't exist.
+  return { paths, fallback: 'blocking' }
+}
+ 
